@@ -47,6 +47,7 @@ class Simpson(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("simpson_py.png")
+        plt.close()
         return "simpson_py.png"
 
     def simps_time(self):

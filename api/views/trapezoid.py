@@ -41,6 +41,7 @@ class Trapezoid(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("trapezoid_py.png")
+        plt.close()
         return "trapezoid_py.png"
 
     def trapz_time(self):

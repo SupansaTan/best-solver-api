@@ -54,6 +54,7 @@ class Newton(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("newton_py.png")
+        plt.close()
         return "newton_py.png"
 
 

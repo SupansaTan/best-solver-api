@@ -56,6 +56,7 @@ class Secant(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("secant_py.png")
+        plt.close()
         return "secant_py.png"
 
     def secant_time(self):

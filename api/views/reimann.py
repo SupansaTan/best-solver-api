@@ -38,6 +38,7 @@ class Reimann(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("reimann_py.png")
+        plt.close()
         return "reimann_py.png"
 
     def reimann_time(self):

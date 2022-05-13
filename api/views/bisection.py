@@ -46,6 +46,7 @@ class Bisection(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("bisection_py.png")
+        plt.close()
         return "bisection_py.png"
 
     def bisection_time(self):

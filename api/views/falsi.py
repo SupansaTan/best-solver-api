@@ -52,6 +52,7 @@ class Falsi(generics.ListAPIView):
         plt.legend()
         plt.grid()
         plt.savefig("falsi_py.png")
+        plt.close()
         return "falsi_py.png"
 
     def falsi_time(self):
