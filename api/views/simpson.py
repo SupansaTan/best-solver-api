@@ -43,11 +43,11 @@ class Simpson(generics.ListAPIView):
             integral = integrate.simps(y_range, x_range)
             integrals.append(integral)
         plt.plot(x, integrals)
-        plt.title('Trapezoid Rule, N = {}'.format(N))
+        plt.title("Simpson's Rule, N = {}".format(N))
         plt.legend()
         plt.grid()
-        plt.savefig("trapezoid_py.png")
-        return "trapezoid_py.png"
+        plt.savefig("simpson_py.png")
+        return "simpson_py.png"
 
     def simps_time(self):
         t1 = time.time()

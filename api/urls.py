@@ -12,4 +12,7 @@ urlpatterns = [
   path('falsi', views.Falsi.as_view(), name='root-falsi'),
   path('newton', views.Newton.as_view(), name='root-newton'),
   path('secant', views.Secant.as_view(), name='root-secant'),
+  path('reimann', views.Reimann.as_view(), name='integral-reimann'),
+  path('trapezoid', views.Trapezoid.as_view(), name='integral-trapezoid'),
+  path('simpson', views.Simpson.as_view(), name='integral-simpson'),
 ]
