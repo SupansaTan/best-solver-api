@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
 class ResultSerializer(serializers.Serializer):
-  result = serializers.FloatField()
-  time_used = serializers.FloatField()
+  result = serializers.CharField()
+  time_used = serializers.CharField()
   graph = serializers.CharField()

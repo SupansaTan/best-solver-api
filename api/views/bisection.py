@@ -19,8 +19,8 @@ class Bisection(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.bisection(self.f,self.a,self.b,self.tol)
-        body['result'] = sol
-        body['time'] = self.bisection_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.bisection_time())
         body['graph'] = self.bisection_graph(self.f,self.a,self.b,sol)
         return Response(body)
 

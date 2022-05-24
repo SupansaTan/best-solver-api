@@ -19,8 +19,8 @@ class Reimann(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.MidPoint_Riemann(self.f,self.a,self.b,self.N)
-        body['result'] = sol
-        body['time'] = self.reimann_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.reimann_time())
         body['graph'] = self.reimann_graph(self.f,self.a,self.b,self.N)
         return Response(body)
 

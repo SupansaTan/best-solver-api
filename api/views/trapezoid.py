@@ -19,8 +19,8 @@ class Trapezoid(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.trapz(self.f,self.a,self.b,self.N)
-        body['result'] = sol
-        body['time'] = self.trapz_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.trapz_time())
         body['graph'] = self.trapz_graph(self.f,self.a,self.b,self.N)
         return Response(body)
 

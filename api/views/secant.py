@@ -20,8 +20,8 @@ class Secant(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.secant(self.f,self.a,self.b)
-        body['result'] = sol
-        body['time'] = self.secant_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.secant_time())
         body['graph'] = self.secant_graph(self.f,self.a,self.b,sol)
         return Response(body)
 

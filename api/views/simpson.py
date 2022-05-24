@@ -20,8 +20,8 @@ class Simpson(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.simps(self.f,self.a,self.b,self.N)
-        body['result'] = sol
-        body['time'] = self.simps_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.simps_time())
         body['graph'] = self.simps_graph(self.f,self.a,self.b,self.N)
         return Response(body)
 

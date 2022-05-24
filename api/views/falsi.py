@@ -19,8 +19,8 @@ class Falsi(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.falsi(self.f,self.a,self.b,self.tol)
-        body['result'] = sol
-        body['time_used'] = self.falsi_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.falsi_time())
         body['graph'] = self.falsi_graph(self.f,self.a,self.b,sol)
         return Response(body)
     

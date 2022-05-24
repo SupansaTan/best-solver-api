@@ -19,8 +19,8 @@ class Newton(generics.ListAPIView):
         self.id = id
         body = {}
         sol = self.newton(self.f, self.df, self.x0,self.epsilon,self.max_iter)
-        body['result'] = sol
-        body['time'] = self.newton_time()
+        body['result'] = '{:.15f}'.format(sol)
+        body['time'] = '{:.3f}'.format(self.newton_time())
         body['graph'] = self.newton_graph(self.f,sol)
         return Response(body)
     
