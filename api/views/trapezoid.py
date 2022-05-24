@@ -6,12 +6,16 @@ from rest_framework.response import Response
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from api.constant.function import getFunction
+import api.constant.variable as var
 
 class Trapezoid(generics.ListAPIView):
     serializer_class = ResultSerializer
     a = 0; b = 5;N = 20
+    id = 1
 
-    def get(self, request):
+    def get(self, request, id):
+        self.id = id
         body = {}
         sol = self.trapz(self.f,self.a,self.b,self.N)
         body['result'] = sol
@@ -20,7 +24,8 @@ class Trapezoid(generics.ListAPIView):
         return Response(body)
 
     def f(self,x):
-        return 1/(1 + x**2)
+        func = getFunction(self.id)
+        return func(x)
 
     def trapz(self,f,a,b,N):
         x = np.linspace(a,b,N+1)
