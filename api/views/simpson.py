@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import time
 from api.constant.function import getFunction
 import api.constant.variable as var
+import base64
 
 class Simpson(generics.ListAPIView):
     serializer_class = ResultSerializer
@@ -53,7 +54,9 @@ class Simpson(generics.ListAPIView):
         plt.grid()
         plt.savefig("simpson_py.png")
         plt.close()
-        return "simpson_py.png"
+        with open("simpson_py.png", "rb") as f:
+            png_encoded = base64.b64encode(f.read())
+        return png_encoded
 
     def simps_time(self):
         t1 = time.time()

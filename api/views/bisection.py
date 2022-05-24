@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import time
 from api.constant.function import getFunction
 import api.constant.variable as var
+import base64
 
 class Bisection(generics.ListAPIView):
     serializer_class = ResultSerializer
@@ -51,7 +52,9 @@ class Bisection(generics.ListAPIView):
         plt.grid()
         plt.savefig("bisection_py.png")
         plt.close()
-        return "bisection_py.png"
+        with open("bisection_py.png", "rb") as f:
+            png_encoded = base64.b64encode(f.read())
+        return png_encoded
 
     def bisection_time(self):
         t1 = time.time()

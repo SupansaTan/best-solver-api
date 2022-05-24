@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import time
 from api.constant.function import getFunction
 import api.constant.variable as var
+import base64
 
 class Trapezoid(generics.ListAPIView):
     serializer_class = ResultSerializer
@@ -47,7 +48,9 @@ class Trapezoid(generics.ListAPIView):
         plt.grid()
         plt.savefig("trapezoid_py.png")
         plt.close()
-        return "trapezoid_py.png"
+        with open("trapezoid_py.png", "rb") as f:
+            png_encoded = base64.b64encode(f.read())
+        return png_encoded
 
     def trapz_time(self):
         t1 = time.time()

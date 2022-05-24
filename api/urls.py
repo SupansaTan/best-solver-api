@@ -7,7 +7,6 @@ schema_view = get_swagger_view(title='Best Solver API')
 
 urlpatterns = [
   path('', schema_view, name='swagger-ui'),  # still error because don't have any api
-  path('root', views.Root.as_view(), name='root-finding'),
   path('Bisection/<int:id>', views.Bisection.as_view(), name='root-bisection'),
   path('RegulaFalsi/<int:id>', views.Falsi.as_view(), name='root-falsi'),
   path('Newton/<int:id>', views.Newton.as_view(), name='root-newton'),

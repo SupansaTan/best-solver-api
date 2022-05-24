@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import time
 from api.constant.function import getFunction
 import api.constant.variable as var
+import base64
 
 class Reimann(generics.ListAPIView):
     serializer_class = ResultSerializer
@@ -44,7 +45,9 @@ class Reimann(generics.ListAPIView):
         plt.grid()
         plt.savefig("reimann_py.png")
         plt.close()
-        return "reimann_py.png"
+        with open("reimann_py.png", "rb") as f:
+            png_encoded = base64.b64encode(f.read())
+        return png_encoded
 
     def reimann_time(self):
         t1 = time.time()
