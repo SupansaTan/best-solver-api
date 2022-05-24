@@ -16,7 +16,7 @@ def f5(x):
     return x**2 -2
 
 def f6(x):
-    return np.exp(-x**2) - x
+    return np.exp((-x)**2) - x
 
 def f7(x):
     return -x + 1 
@@ -62,28 +62,28 @@ def df2(x):
     return np.exp(0.5*x) * (0.5*x+1) + 1.2
 
 def df3(x):
-    return 3*x**2 -1
+    return 3*pow(x,2) - 1
 
 def df4(x):
-    return 3*x**2 - 2*x
+    return 3*pow(x,2) - 2*x
 
 def df5(x):
     return 2*x
 
 def df6(x):
-    return -2*np.exp(-x**2) - 1
+    return np.exp(pow(x,2))*(2*x) - 1
 
 def df7(x):
     return -1
 
 def df8(x):
-    return -5**(-x) * np.log(5)
+    return -np.log(5) * pow(1/5,x);
 
 def df9(x):
-    return 3*x**2 - 6*x -4
+    return 3*pow(x,2) - 6*x - 4
 
 def df10(x):
-    return 3**(-x) * np.log(3) + 1
+    return np.log(3) * pow((1/3),x)
 
 def getDiffFunction(id):
     match id:
