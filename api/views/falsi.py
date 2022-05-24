@@ -7,12 +7,15 @@ from rest_framework.response import Response
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from api.constant.function import getFunction
+import api.constant.variable as var
 
 class Falsi(generics.ListAPIView):
     serializer_class = ResultSerializer
-    tol, a, b = 0.001, 0.4, 0.6
+    tol, a, b = var.tol, var.a, var.b
 
-    def get(self, request):
+    def get(self, request, id):
+        self.id = id
         body = {}
         sol = self.falsi(self.f,self.a,self.b,self.tol)
         body['result'] = sol
@@ -21,12 +24,13 @@ class Falsi(generics.ListAPIView):
         return Response(body)
     
     def f(self,x):
-        return np.exp(-x) -x
-
+        func = getFunction(self.id)
+        return func(x)
+        
     def falsi(self,f,a,b,tol=0.001):
         step = 1
         if f(a) * f(b) >= 0.0:
-            print('Try Again with different guess values.')
+            # print('Try Again with different guess values.')
             return None
         else:
             condition = True

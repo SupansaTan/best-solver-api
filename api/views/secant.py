@@ -7,12 +7,16 @@ from rest_framework.response import Response
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from api.constant.function import getFunction
+import api.constant.variable as var
 
 class Secant(generics.ListAPIView):
     serializer_class = ResultSerializer
-    a,b = 0.4,0.6
+    a,b = var.a , var.b
+    id = 1
 
-    def get(self, request):
+    def get(self, request, id):
+        self.id = id
         body = {}
         sol = self.secant(self.f,self.a,self.b)
         body['result'] = sol
@@ -21,11 +25,12 @@ class Secant(generics.ListAPIView):
         return Response(body)
 
     def f(self,x):
-        return np.exp(-x) -x
+        func = getFunction(self.id)
+        return func(x)
 
     def secant(self,f,a,b,N=20):
         if f(a)*f(b) >= 0:
-            print("Secant method fails.")
+            # print("Secant method fails.")
             return None
         a_n = a
         b_n = b

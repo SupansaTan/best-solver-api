@@ -6,12 +6,16 @@ from rest_framework.response import Response
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from api.constant.function import getFunction, getDiffFunction
+import api.constant.variable as var
 
 class Newton(generics.ListAPIView):
     serializer_class = ResultSerializer
-    x0,epsilon,max_iter = 1.0, 1e-15, 16
-    
-    def get(self, request):
+    x0,epsilon,max_iter = var.x0, var.epsilon, var.max_iter
+    id = 1
+
+    def get(self, request, id):
+        self.id = id
         body = {}
         sol = self.newton(self.f, self.df, self.x0,self.epsilon,self.max_iter)
         body['result'] = sol
@@ -20,10 +24,12 @@ class Newton(generics.ListAPIView):
         return Response(body)
     
     def f(self,x):
-        return np.exp(-x) -x
+        func = getFunction(self.id)
+        return func(x)
 
     def df(self,x):
-        return -np.exp(-x) - 1
+        dfunc = getDiffFunction(self.id)
+        return dfunc(x)
 
     def newton(self,f,df,x0,epsilon,max_iter):
         xn = x0
@@ -44,7 +50,6 @@ class Newton(generics.ListAPIView):
     def newton_graph(self,f,root):
         xmin = float('%.2f' % (root-0.1) )
         xmax = float('%.2f' % (root+0.1) )
-        print(xmin , xmax)
         x = np.linspace(xmin , xmax, 1000)
         f1 = f(x)
         plt.plot(x, f1, '-')

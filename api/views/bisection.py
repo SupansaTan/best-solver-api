@@ -1,5 +1,4 @@
 from rest_framework import generics
-from sympy import N
 from api.serializers import ResultSerializer
 import urllib, json, coreapi, coreschema
 from urllib.error import HTTPError
@@ -7,12 +6,16 @@ from rest_framework.response import Response
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from api.constant.function import getFunction
+import api.constant.variable as var
 
 class Bisection(generics.ListAPIView):
     serializer_class = ResultSerializer
-    tol, a, b = 0.001, 0.4, 0.6
+    tol, a, b = var.tol, var.a, var.b
+    id = 1
 
-    def get(self, request):
+    def get(self, request, id):
+        self.id = id
         body = {}
         sol = self.bisection(self.f,self.a,self.b,self.tol)
         body['result'] = sol
@@ -21,7 +24,8 @@ class Bisection(generics.ListAPIView):
         return Response(body)
 
     def f(self,x):
-        return np.exp(-x) -x
+        func = getFunction(self.id)
+        return func(x)
 
     def bisection(self,f,a,b,tol):
         fa,fb = f(a), f(b)
@@ -38,7 +42,7 @@ class Bisection(generics.ListAPIView):
 
     def bisection_graph(self,f,a,b,m):
         x = np.linspace(a,b, 1000)
-        y = np.exp(-x) -x
+        y = f(x)
         plt.plot(x, y, '-')
         plt.plot(m, f(m), 'ro')
         plt.xlabel('x')
