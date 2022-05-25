@@ -49,8 +49,8 @@ class Newton(generics.ListAPIView):
 
 
     def newton_graph(self,f,root):
-        xmin = float('%.2f' % (root-0.1) )
-        xmax = float('%.2f' % (root+0.1) )
+        xmin = float('%.2f' % (var.a) )
+        xmax = float('%.2f' % (var.b) )
         x = np.linspace(xmin , xmax, 1000)
         f1 = f(x)
         plt.plot(x, f1, '-')
