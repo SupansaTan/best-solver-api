@@ -12,7 +12,7 @@ import base64
 
 class Trapezoid(generics.ListAPIView):
     serializer_class = ResultSerializer
-    a = 0; b = 5;N = 20
+    a = var.a; b = var.b;N = 20
     id = 1
 
     def get(self, request, id):
