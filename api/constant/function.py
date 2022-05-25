@@ -16,7 +16,7 @@ def f5(x):
     return x**2 -2
 
 def f6(x):
-    return np.exp((-x)**2) - x
+    return np.exp(-pow(x,2)) - x
 
 def f7(x):
     return -x + 1 
@@ -71,7 +71,7 @@ def df5(x):
     return 2*x
 
 def df6(x):
-    return np.exp(pow(x,2))*(2*x) - 1
+    return -2*x*np.exp(-pow(x,2)) - 1
 
 def df7(x):
     return -1
