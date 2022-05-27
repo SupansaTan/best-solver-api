@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'corsheaders',
     'api',
-    'corsheaders',
     'whitenoise.runserver_nostatic'
 ]
 
